@@ -33,6 +33,7 @@ def generate_normal_training_data(num_samples):
         sample_list.append((a, b))
     return sample_list
 
+
 def label_data_concept(concept, data):
     labeled_training = {}
     for ex in data:
