@@ -146,7 +146,10 @@ if __name__ == "__main__":
             concept_label1 = label_data_concept((vx1[0], vx1[-1], vx2[0], vx2[-1]), validation_data1)
             hypothesis_label1 = label_data_concept((vh1[0], vh1[-1], vh2[0], vh2[-1]), validation_data1)
             error1 = calculate_gen_error(concept_label1, hypothesis_label1)
-            gen_err1.append(error1)
+            if error1 == 0:
+                gen_err1.append(0.000001)
+            else:
+                gen_err1.append(error1)
         percentile1 = np.percentile(gen_err1, 95)
         gen_error_m[m2] = np.log(percentile1)
     print(gen_error_m)
@@ -173,7 +176,10 @@ if __name__ == "__main__":
             concept_label3 = label_data_concept((vx1[0], vx1[-1], vx2[0], vx2[-1]), validation_data2)
             hypothesis_label3 = label_data_concept((vh1[0], vh1[-1], vh2[0], vh2[-1]), validation_data2)
             error3 = calculate_gen_error(concept_label3, hypothesis_label3)
-            gen_err_2.append(error3)
+            if error3 == 0:
+                gen_err_2.append(0.000001)
+            else:
+                gen_err_2.append(error3)
         percentile3 = np.percentile(gen_err_2, 95)
         gen_error_m_2[m3] = np.log(percentile3)
     print(gen_error_m_2)
