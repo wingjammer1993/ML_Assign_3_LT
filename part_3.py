@@ -28,8 +28,8 @@ def generate_training_data(num_samples):
 def generate_normal_training_data(num_samples):
     sample_list = []
     for k in range(0, num_samples):
-        a = 25*np.random.randn() + 25
-        b = 25*np.random.randn() + 25
+        a = 50*np.random.randn() + 25
+        b = 50*np.random.randn() + 25
         sample_list.append((a, b))
     return sample_list
 
@@ -75,6 +75,7 @@ def give_hypothesis(label_dict):
         x_max = max(x_p)
         y_min = min(y_p)
         y_max = max(y_p)
+        print(x_min, x_max, y_min, y_max)
         return (x_min, y_min), (x_max, y_max), (x_min, y_max), (x_max, y_min)
     else:
         return (0, 0), (0, 0), (0, 0), (0, 0)
@@ -99,7 +100,7 @@ if __name__ == "__main__":
     plot_labelled_training(dict_label)
     vh1, vh2, vh3, vh4 = give_hypothesis(dict_label)
     if vh1 != 'error' or vh2 != 'error' or vh3 != 'error' or vh4 != 'error':
-        plot_rectangle(vh1, vh2, vh3, vh4, 'g*')
+        plot_rectangle(vh1, vh2, vh3, vh4, 'g.')
         # Training is over, hypothesis is created, validate the results
         validation_data = generate_training_data(1000)
         concept_label = label_data_concept((vx1[0], vx1[-1], vx2[0], vx2[-1]), validation_data)
