@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 def generate_concept_rect():
     a = np.random.rand()*100
     b = np.random.rand()*100
-    c = np.random.rand()*(100 - a) + a
-    d = np.random.rand()*(100 - b) + b
+    c = np.random.rand()*100
+    d = np.random.rand()*100
     return (a, b), (c, d), (a, d), (c, b)
 
 
@@ -37,8 +37,8 @@ def generate_normal_training_data(num_samples):
 def label_data_concept(concept, data):
     labeled_training = {}
     for ex in data:
-        if concept[0] <= ex[0] <= concept[2]:
-            if concept[1] <= ex[-1] <= concept[3]:
+        if concept[0] <= ex[0] <= concept[2] or concept[0] >= ex[0] >= concept[2]:
+            if concept[1] <= ex[-1] <= concept[3] or concept[1] >= ex[-1] >= concept[3]:
                 labeled_training[ex] = 1
             else:
                 labeled_training[ex] = 0
