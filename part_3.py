@@ -116,9 +116,7 @@ if __name__ == "__main__":
     plt.show()
     plt.close()
 
-
     # Part 1
-
     m1 = 100
     gen_error = []
     for i in range(0, 500):
@@ -135,7 +133,6 @@ if __name__ == "__main__":
     print('95th percentile of generalization error is {}'.format(percentile))
 
     # Part 2
-
     m_list = [250, 500, 1000, 1250, 1500]
     gen_error_m = {}
     gen_err1 = []
@@ -163,7 +160,6 @@ if __name__ == "__main__":
     plt.close()
 
     # Part 3
-
     m_list_2 = [250, 500, 1000, 1250, 1500]
     gen_error_m_2 = {}
     gen_err_2 = []
