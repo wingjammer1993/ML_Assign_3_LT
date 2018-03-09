@@ -77,13 +77,13 @@ def give_hypothesis(label_dict):
         y_max = max(y_p)
         return (x_min, y_min), (x_max, y_max), (x_min, y_max), (x_max, y_min)
     else:
-        return 'error', 'error', 'error', 'error'
+        return (0, 0), (0, 0), (0, 0), (0, 0)
 
 
 def calculate_gen_error(concept, hypothesis):
     count = 0
-    for i in concept:
-        if concept[i] != hypothesis[i]:
+    for p in concept:
+        if concept[p] != hypothesis[p]:
             count += 1
     return count/len(concept)
 
@@ -149,10 +149,11 @@ if __name__ == "__main__":
                 error = calculate_gen_error(concept_label, hypothesis_label)
                 gen_err.append(error)
         percentile = np.percentile(gen_err, 95)
-        gen_error_m[m] = percentile
+        gen_error_m[m] = np.log(percentile)
     print(gen_error_m)
-    theory_gen = [17.52/m for m in m_list]
+    theory_gen = [np.log(17.52/m) for m in m_list]
     plt.figure()
+    m_list = [np.log(m) for m in m_list]
     plt.plot(m_list, theory_gen, label='theoretical bound')
     plt.plot(m_list, gen_error_m.values(), label='empirical bound')
     plt.legend()
@@ -178,12 +179,13 @@ if __name__ == "__main__":
                 error = calculate_gen_error(concept_label, hypothesis_label)
                 gen_err_2.append(error)
         percentile = np.percentile(gen_err_2, 95)
-        gen_error_m_2[m] = percentile
+        gen_error_m_2[m] = np.log(percentile)
     print(gen_error_m_2)
-    theory_gen = [17.52/m for m in m_list]
+    theory_gen = [np.log(17.52/m) for m in m_list_2]
+    m_list_2 = [np.log(m) for m in m_list_2]
     plt.figure()
-    plt.plot(m_list, theory_gen, label='theoretical bound')
-    plt.plot(m_list, gen_error_m_2.values(), label='empirical bound')
+    plt.plot(m_list_2, theory_gen, label='theoretical bound')
+    plt.plot(m_list_2, gen_error_m_2.values(), label='empirical bound')
     plt.legend()
     plt.show()
     plt.close()
